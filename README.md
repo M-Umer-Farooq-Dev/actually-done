@@ -201,3 +201,5 @@ JSONL is streamed; malformed lines are counted and unknown fields ignored. Files
 ## Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and synthetic-fixture guidance, [the architecture decision](docs/decisions/0001-standalone-rust.md) for repository scope, and [publishing instructions](docs/publishing.md) for the initial GitHub release. Licensed under [MIT](LICENSE).
+
+Security-sensitive reports should follow [SECURITY.md](SECURITY.md). The [dependency license inventory](docs/dependency-licenses.md) and [Windows third-party notices](THIRD_PARTY_NOTICES.md) accompany the release. Preserve the applicable notices when redistributing binaries.
