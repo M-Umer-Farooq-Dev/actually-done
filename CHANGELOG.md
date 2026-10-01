@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add an installable actually-done agent skill for Claude Code and Codex, with an LLM guide, installation instructions, and a receipt workflow diagram.
+
 ## 0.1.0
 
 - Detect unfinished obligations in long paragraphs before truncating retained excerpts.
