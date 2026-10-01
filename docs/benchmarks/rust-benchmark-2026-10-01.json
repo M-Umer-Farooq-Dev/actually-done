@@ -1,0 +1,377 @@
+{
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "python": "3.11.6 (tags/v3.11.6:8b6ee5b, Oct  2 2023, 14:57:12) [MSC v.1935 64 bit (AMD64)]",
+  "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+  "git": "git version 2.39.2.windows.1",
+  "binary_bytes": 2970624,
+  "binary_sha256": "35f540a53afe4c3a064aba9f793a145d9206dcbf11e4970f22185020b47e5cba",
+  "runs": 7,
+  "warmups": 3,
+  "method": "Alternating processes; warm filesystem cache; full decoded receipt and exit-code parity before timing; no fresh test suite execution; stdout captured for both",
+  "results": [
+    {
+      "scenario": "startup --version",
+      "transcript_bytes": null,
+      "python": {
+        "median_ms": 178.618,
+        "min_ms": 172.778,
+        "max_ms": 183.228,
+        "samples_ms": [
+          183.228,
+          178.618,
+          178.46,
+          172.778,
+          173.328,
+          182.382,
+          179.246
+        ]
+      },
+      "rust": {
+        "median_ms": 7.14,
+        "min_ms": 6.339,
+        "max_ms": 7.784,
+        "samples_ms": [
+          7.784,
+          7.305,
+          7.639,
+          6.828,
+          6.978,
+          6.339,
+          7.14
+        ]
+      },
+      "speedup": 25.02
+    },
+    {
+      "scenario": "claude 20 events, git disabled",
+      "transcript_bytes": 3637,
+      "python": {
+        "median_ms": 177.562,
+        "min_ms": 172.631,
+        "max_ms": 194.136,
+        "samples_ms": [
+          177.411,
+          176.71,
+          177.562,
+          172.631,
+          179.387,
+          194.136,
+          193.111
+        ]
+      },
+      "rust": {
+        "median_ms": 13.876,
+        "min_ms": 13.672,
+        "max_ms": 17.57,
+        "samples_ms": [
+          13.876,
+          13.801,
+          13.712,
+          13.672,
+          15.444,
+          16.48,
+          17.57
+        ]
+      },
+      "speedup": 12.8
+    },
+    {
+      "scenario": "claude 20 events, git enabled",
+      "transcript_bytes": 3637,
+      "python": {
+        "median_ms": 391.756,
+        "min_ms": 382.074,
+        "max_ms": 413.212,
+        "samples_ms": [
+          393.085,
+          382.074,
+          397.343,
+          391.756,
+          413.212,
+          388.324,
+          388.575
+        ]
+      },
+      "rust": {
+        "median_ms": 311.91,
+        "min_ms": 300.274,
+        "max_ms": 324.414,
+        "samples_ms": [
+          300.274,
+          316.492,
+          313.793,
+          311.91,
+          307.63,
+          324.414,
+          308.06
+        ]
+      },
+      "speedup": 1.26
+    },
+    {
+      "scenario": "claude 10000 events, git disabled",
+      "transcript_bytes": 1937629,
+      "python": {
+        "median_ms": 440.764,
+        "min_ms": 433.16,
+        "max_ms": 491.827,
+        "samples_ms": [
+          439.424,
+          440.764,
+          433.16,
+          451.047,
+          454.129,
+          434.296,
+          491.827
+        ]
+      },
+      "rust": {
+        "median_ms": 51.723,
+        "min_ms": 50.078,
+        "max_ms": 63.688,
+        "samples_ms": [
+          51.167,
+          51.723,
+          53.086,
+          50.133,
+          63.688,
+          52.046,
+          50.078
+        ]
+      },
+      "speedup": 8.52
+    },
+    {
+      "scenario": "claude 50000 events, git disabled",
+      "transcript_bytes": 9777625,
+      "python": {
+        "median_ms": 1542.836,
+        "min_ms": 1520.076,
+        "max_ms": 1579.686,
+        "samples_ms": [
+          1579.686,
+          1556.949,
+          1520.523,
+          1551.558,
+          1520.076,
+          1542.836,
+          1535.743
+        ]
+      },
+      "rust": {
+        "median_ms": 239.469,
+        "min_ms": 226.81,
+        "max_ms": 253.075,
+        "samples_ms": [
+          239.469,
+          228.245,
+          243.463,
+          226.81,
+          227.695,
+          240.572,
+          253.075
+        ]
+      },
+      "speedup": 6.44
+    },
+    {
+      "scenario": "claude 50000 events, git enabled",
+      "transcript_bytes": 9777625,
+      "python": {
+        "median_ms": 1814.483,
+        "min_ms": 1734.085,
+        "max_ms": 1971.73,
+        "samples_ms": [
+          1734.085,
+          1765.467,
+          1777.979,
+          1872.229,
+          1814.483,
+          1971.73,
+          1936.185
+        ]
+      },
+      "rust": {
+        "median_ms": 557.027,
+        "min_ms": 516.306,
+        "max_ms": 628.625,
+        "samples_ms": [
+          516.306,
+          557.027,
+          552.783,
+          534.589,
+          628.625,
+          616.022,
+          595.079
+        ]
+      },
+      "speedup": 3.26
+    },
+    {
+      "scenario": "codex 20 events, git disabled",
+      "transcript_bytes": 3461,
+      "python": {
+        "median_ms": 188.176,
+        "min_ms": 181.902,
+        "max_ms": 204.256,
+        "samples_ms": [
+          187.948,
+          186.04,
+          204.256,
+          192.528,
+          198.951,
+          181.902,
+          188.176
+        ]
+      },
+      "rust": {
+        "median_ms": 14.703,
+        "min_ms": 14.369,
+        "max_ms": 16.123,
+        "samples_ms": [
+          14.369,
+          15.554,
+          16.123,
+          14.607,
+          14.904,
+          14.703,
+          14.653
+        ]
+      },
+      "speedup": 12.8
+    },
+    {
+      "scenario": "codex 20 events, git enabled",
+      "transcript_bytes": 3461,
+      "python": {
+        "median_ms": 421.86,
+        "min_ms": 393.083,
+        "max_ms": 432.183,
+        "samples_ms": [
+          393.083,
+          431.812,
+          432.183,
+          396.839,
+          428.431,
+          421.86,
+          399.425
+        ]
+      },
+      "rust": {
+        "median_ms": 331.324,
+        "min_ms": 323.455,
+        "max_ms": 346.868,
+        "samples_ms": [
+          332.45,
+          324.63,
+          333.477,
+          326.295,
+          323.455,
+          331.324,
+          346.868
+        ]
+      },
+      "speedup": 1.27
+    },
+    {
+      "scenario": "codex 10000 events, git disabled",
+      "transcript_bytes": 1718957,
+      "python": {
+        "median_ms": 392.306,
+        "min_ms": 387.58,
+        "max_ms": 404.82,
+        "samples_ms": [
+          400.913,
+          404.19,
+          404.82,
+          392.306,
+          392.073,
+          391.694,
+          387.58
+        ]
+      },
+      "rust": {
+        "median_ms": 37.191,
+        "min_ms": 36.345,
+        "max_ms": 50.137,
+        "samples_ms": [
+          36.959,
+          39.245,
+          36.345,
+          37.191,
+          38.197,
+          36.806,
+          50.137
+        ]
+      },
+      "speedup": 10.55
+    },
+    {
+      "scenario": "codex 50000 events, git disabled",
+      "transcript_bytes": 8638955,
+      "python": {
+        "median_ms": 1279.069,
+        "min_ms": 1235.252,
+        "max_ms": 1330.464,
+        "samples_ms": [
+          1294.57,
+          1261.863,
+          1235.252,
+          1253.287,
+          1330.415,
+          1279.069,
+          1330.464
+        ]
+      },
+      "rust": {
+        "median_ms": 136.983,
+        "min_ms": 130.274,
+        "max_ms": 157.471,
+        "samples_ms": [
+          135.566,
+          136.255,
+          130.274,
+          136.983,
+          157.471,
+          144.24,
+          151.862
+        ]
+      },
+      "speedup": 9.34
+    },
+    {
+      "scenario": "codex 50000 events, git enabled",
+      "transcript_bytes": 8638955,
+      "python": {
+        "median_ms": 1475.417,
+        "min_ms": 1455.024,
+        "max_ms": 1682.675,
+        "samples_ms": [
+          1682.675,
+          1468.176,
+          1455.024,
+          1492.579,
+          1468.855,
+          1491.063,
+          1475.417
+        ]
+      },
+      "rust": {
+        "median_ms": 455.192,
+        "min_ms": 431.491,
+        "max_ms": 479.162,
+        "samples_ms": [
+          479.162,
+          448.882,
+          439.073,
+          431.491,
+          470.737,
+          455.192,
+          460.525
+        ]
+      },
+      "speedup": 3.24
+    }
+  ]
+}
