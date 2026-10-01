@@ -73,9 +73,6 @@ pub fn leftovers(events: &[Event]) -> Vec<Finding> {
             continue;
         }
         for line in prose(&e.text) {
-            if line.chars().count() > 200 {
-                continue;
-            }
             let normalized = CHECK
                 .replace(line, "")
                 .split_whitespace()
@@ -86,11 +83,34 @@ pub fn leftovers(events: &[Event]) -> Vec<Finding> {
                 results.retain(|(k, _)| *k != normalized);
                 continue;
             }
-            if line.starts_with('{') || line.starts_with("[\"") || !LEFTOVER.is_match(line) {
+            if line.starts_with('{') || line.starts_with("[\"") {
                 continue;
             }
+            let Some(marker) = LEFTOVER.find(line) else {
+                continue;
+            };
             if !results.iter().any(|(k, _)| *k == normalized) {
-                results.push((normalized, Finding::new(line, &e.role)));
+                // Match and resolve against the complete obligation. Bound only
+                // the retained excerpt, preserving a marker even late in a line.
+                let start = if line[..marker.end()].chars().count() > 199 {
+                    marker.start()
+                } else {
+                    0
+                };
+                let mut excerpt = if start > 0 {
+                    "…".into()
+                } else {
+                    String::new()
+                };
+                let available = 200 - excerpt.chars().count();
+                let remainder = &line[start..];
+                if remainder.chars().count() > available {
+                    excerpt.extend(remainder.chars().take(available - 1));
+                    excerpt.push('…');
+                } else {
+                    excerpt.push_str(remainder);
+                }
+                results.push((normalized, Finding::new(&excerpt, &e.role)));
             }
         }
     }
