@@ -44,6 +44,40 @@ cargo install --locked --path .
 
 Source installation is available now. There is no crates.io publication. The GitHub v0.1.0 release includes a Windows x64 package with license notices and SHA-256 checksums; other platforms currently use source installation.
 
+## Use it as an agent skill
+
+Give Claude Code or Codex a reusable workflow for checking a completed session and explaining the receipt. The [bundled skill](skills/actually-done/SKILL.md) selects inputs, invokes the CLI, handles its exit codes, and preserves findings and uncertainty. Install the CLI first; the skill supplies instructions, not an executable. The skill is available in the current checkout and works with v0.1.0; it is not in the original release archives.
+
+Copy the entire `skills/actually-done` directory into one of these locations:
+
+| Agent | Project installation | Personal installation | Invoke |
+| --- | --- | --- | --- |
+| Codex | `.agents/skills/actually-done/` | `~/.agents/skills/actually-done/` | `$actually-done` |
+| Claude Code | `.claude/skills/actually-done/` | `~/.claude/skills/actually-done/` | `/actually-done` |
+
+Install into the project you want to assess, or your personal directory for all local projects. Start a new agent session after copying. These paths follow the official [Codex](https://developers.openai.com/codex/skills/) and [Claude Code](https://code.claude.com/docs/en/skills) documentation. See the [agent and LLM guide](docs/agents.md) for Bash/PowerShell installation commands, prompts, and the JSON integration contract.
+
+For example, in Codex:
+
+```text
+$actually-done Check the completed session at /path/to/rollout.jsonl against
+this repository. Run cargo test --locked; this command is authorized.
+Explain the verdict, findings, and uncertainty.
+```
+
+For Claude Code, invoke `/actually-done` and give a Claude transcript path. Choose your project's test command or explicitly waive fresh tests. The skill respects existing authorization and does not start a repair loop. A live session may lack a final completion claim; use a completed transcript when possible.
+
+```mermaid
+flowchart LR
+    U[Ask your agent for a completion check] --> S[actually-done skill]
+    S --> C[Local Rust CLI]
+    C --> J[JSON evidence receipt]
+    J --> A[Agent explains verdict and uncertainty]
+    A --> H[You decide the next step]
+```
+
+The CLI never uploads transcripts. An agent reading the receipt may send its content to its model provider; review sensitive excerpts before sharing.
+
 ## Your first receipt
 
 Run from the repository the agent worked on:

@@ -1,0 +1,4 @@
+interface:
+  display_name: "actually-done"
+  short_description: "Verify agent handoffs with a local evidence receipt"
+  default_prompt: "Use $actually-done to check a completed agent session and explain its evidence receipt."
