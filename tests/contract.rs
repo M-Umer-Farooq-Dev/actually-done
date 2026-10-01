@@ -83,6 +83,37 @@ fn leftover_limit_is_applied_after_later_resolutions() {
 }
 
 #[test]
+fn long_obligations_are_detected_before_excerpt_truncation() {
+    let prefix = "説明".repeat(110);
+    let findings = leftovers(&[Event {
+        role: "assistant".into(),
+        text: format!(
+            "{prefix} We should rotate the key later. {}",
+            "more context ".repeat(20)
+        ),
+        ..Event::default()
+    }]);
+    assert_eq!(findings.len(), 1);
+    assert!(findings[0].text.chars().count() <= 200);
+    assert_eq!(findings[0].text, findings[0].evidence_line);
+    assert!(findings[0].text.ends_with('…'));
+    assert!(findings[0].text.contains("rotate the key later"));
+}
+
+#[test]
+fn long_checkbox_obligations_use_full_text_for_resolution_and_deduplication() {
+    let prefix = "Detailed obligation ".repeat(15);
+    let events = [Event {
+        role: "assistant".into(),
+        text: format!(
+            "- [ ] {prefix}first\n- [ ] {prefix}second\n- [ ] {prefix}second\n- [x] {prefix}first"
+        ),
+        ..Event::default()
+    }];
+    assert_eq!(leftovers(&events).len(), 1);
+}
+
+#[test]
 fn windows_paths_and_traversal() {
     let root = Path::new("D:/synthetic/repo");
     assert_eq!(
