@@ -1,0 +1,41 @@
+name: Native packages
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - run: rustup toolchain install 1.85.0 --profile minimal --target ${{ matrix.target }}
+      - run: cargo +1.85.0 test --locked --target ${{ matrix.target }}
+      - run: cargo +1.85.0 build --release --locked --target ${{ matrix.target }}
+      - name: Verify synthetic demo
+        shell: bash
+        run: |
+          binary=target/${{ matrix.target }}/release/actually-done
+          if [[ "${{ matrix.target }}" == *windows* ]]; then binary="$binary.exe"; fi
+          python scripts/demo.py --binary "$binary"
+      - run: python scripts/package_release.py --target ${{ matrix.target }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-${{ matrix.target }}
+          path: |
+            dist/*.zip
+            dist/*.tar.gz
+            dist/*.sha256
+          if-no-files-found: error
+          retention-days: 30

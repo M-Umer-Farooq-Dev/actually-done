@@ -1,0 +1,9 @@
+[
+  {"slug":"index","title":"actually-done — completion checks for Claude Code and Codex","description":"Get a local evidence receipt for agent completion claims, Git changes, fresh tests, and unfinished work. Open-source Rust CLI and agent skill."},
+  {"slug":"install","title":"Install actually-done: native CLI and agent skill","description":"Install the Rust CLI, choose a Claude Code or Codex skill location, and run your first local completion receipt."},
+  {"slug":"claude-code","title":"How to verify that Claude Code completed a task","description":"Check a completed Claude Code transcript against current Git changes and freshly run tests. Understand file mismatches, leftovers, and uncertainty."},
+  {"slug":"codex","title":"Check a Codex session against Git changes and fresh tests","description":"Select a completed Codex rollout, run an authorized test command, and interpret a JSON completion receipt without claiming authorship or correctness."},
+  {"slug":"agent-skill","title":"Install actually-done as a Claude Code or Codex skill","description":"Teach your coding agent to select a completed transcript, invoke actually-done, and explain its verdict, test status, findings, and limits."},
+  {"slug":"verdicts","title":"DONE, PARTIAL, NOT DONE, UNKNOWN: receipt meanings and FAQ","description":"Understand verdict precedence, test waivers, already committed files, transcript privacy, and the limits of heuristic completion verification."},
+  {"slug":"case-study","title":"Passing tests with unfinished work: a reproducible agent receipt","description":"Reproduce a synthetic Claude Code handoff where tests pass but an unresolved obligation produces PARTIAL. Run the example locally."}
+]

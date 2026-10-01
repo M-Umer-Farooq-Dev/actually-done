@@ -6,6 +6,14 @@ An agent using the skill still needs local shell access, Git, the executable on 
 
 ## Install the skill
 
+Optional third-party installer, run from the target project (Node.js and network required):
+
+```console
+npx skills add M-Umer-Farooq-Dev/actually-done --skill actually-done --agent codex claude-code --copy
+```
+
+This command was verified in an isolated project. It does not install the CLI. The [skills installer](https://skills.sh/docs) has separate telemetry/privacy policies; manual copying below avoids using that installer.
+
 Copy the entire `skills/actually-done` folder, including its license and `agents` metadata. Choose a destination below; do not copy only `SKILL.md` or create an extra nested `actually-done` directory. Review an existing installation before updating it.
 
 | Agent | This project only | All local projects | Invoke |

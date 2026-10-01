@@ -1,0 +1,12 @@
+<p class="eyebrow">Open source · MIT · Local Rust CLI</p>
+<div class="opening"><div><h1>The agent said done.<br>Check the handoff.</h1>
+<p class="lead">Completion checks for Claude Code and Codex, with evidence you can inspect.</p>
+<p>actually-done compares an agent’s completion claims with current Git changes, fresh tests, and unfinished transcript work. Get a terminal, JSON, or Markdown receipt before you review or merge.</p>
+<p class="actions"><a class="button" href="install.html">Install and try it</a><a href="case-study.html">Run the example →</a></p></div>
+<figure class="receipt"><figcaption>A synthetic handoff, checked locally</figcaption><p class="verdict">PARTIAL <span>exit 1</span></p><dl><dt>Claimed file</dt><dd>auth.py — in current changes</dd><dt>Fresh tests</dt><dd>passed</dd><dt>Unfinished work</dt><dd>“We should rotate the key later.”</dd></dl><p>Passing tests did not close the obligation.</p><a href="case-study.html">Reproduce this receipt</a></figure></div>
+<h2>A repeatable check after an agent run</h2><ol class="flow"><li>Select a completed session</li><li>Check Git and run tests</li><li>Inspect findings and limits</li><li>Decide your next step</li></ol>
+<h2>Use it in the project the agent worked on</h2><pre><code>actually-done . --test "cargo test --locked"</code></pre><p>Choose your project’s test command. Tests run locally and may change files or access the network. Explicitly waiving tests is supported and visible in the receipt.</p>
+<div class="reading"><a href="claude-code.html">Check Claude Code</a><a href="codex.html">Check Codex</a><a href="agent-skill.html">Use the agent skill</a><a href="verdicts.html">Read verdicts and FAQs</a></div>
+<h2>Evidence, with limits attached</h2><p><strong>DONE means “no gaps detected by the available checks.”</strong> It does not prove correctness, security, deployment, or who changed a file. A claimed file may already be committed; existing changes may predate the session. Scope and unfinished-work findings are heuristics.</p>
+<p>The CLI never uploads transcripts. No account or API key is required. If an agent reads the receipt, its configured model provider may receive that content.</p>
+<p>Helpful in your workflow? <a href="https://github.com/M-Umer-Farooq-Dev/actually-done">Star the repository</a> or share a minimal, anonymized issue so the checks can improve.</p>

@@ -1,10 +1,12 @@
-# actually-done
+# actually-done — completion checks for Claude Code and Codex
 
 **The agent said “done.” Get a receipt before you move on.**
 
 A native Rust CLI that compares Claude Code and Codex completion claims with current Git changes, freshly run tests, and unresolved work in the transcript. One command gives you a terminal, JSON, or Markdown receipt—with evidence and uncertainty together.
 
 **v0.1.0 · MIT · Local processing · No API key · No Python runtime**
+
+This development checkout prepares **v0.1.1**. [Published downloads](https://github.com/M-Umer-Farooq-Dev/actually-done/releases) remain the source of released artifacts; CI packages are previews. See [distribution and adoption](docs/distribution.md) for release, website, and measurement steps.
 
 ## Why use it?
 
@@ -44,6 +46,16 @@ cargo install --locked --path .
 
 Source installation is available now. There is no crates.io publication. The GitHub v0.1.0 release includes a Windows x64 package with license notices and SHA-256 checksums; other platforms currently use source installation.
 
+### Try a reproducible receipt
+
+From the source checkout, with Python 3.11+ for this development-only demo:
+
+```console
+python scripts/demo.py --binary actually-done
+```
+
+The demo creates an isolated synthetic project, runs a fresh assertion, and verifies that “rotate the key later” still produces PARTIAL. It does not access your real sessions. [Read the case study](docs/case-study.md) and [the agent guide](docs/agents.md). The CLI itself does not require Python.
+
 ## Use it as an agent skill
 
 Give Claude Code or Codex a reusable workflow for checking a completed session and explaining the receipt. The [bundled skill](skills/actually-done/SKILL.md) selects inputs, invokes the CLI, handles its exit codes, and preserves findings and uncertainty. Install the CLI first; the skill supplies instructions, not an executable. The skill is available in the current checkout and works with v0.1.0; it is not in the original release archives.
@@ -54,6 +66,14 @@ Copy the entire `skills/actually-done` directory into one of these locations:
 | --- | --- | --- | --- |
 | Codex | `.agents/skills/actually-done/` | `~/.agents/skills/actually-done/` | `$actually-done` |
 | Claude Code | `.claude/skills/actually-done/` | `~/.claude/skills/actually-done/` | `/actually-done` |
+
+Alternatively, from the project where you want the skill, the tested third-party installer supports:
+
+```console
+npx skills add M-Umer-Farooq-Dev/actually-done --skill actually-done --agent codex claude-code --copy
+```
+
+This requires Node.js and network access and follows the [skills installer's own policies](https://skills.sh/docs); it is separate from the CLI's local processing and no-telemetry policy. It installs instructions, not the native executable.
 
 Install into the project you want to assess, or your personal directory for all local projects. Start a new agent session after copying. These paths follow the official [Codex](https://developers.openai.com/codex/skills/) and [Claude Code](https://code.claude.com/docs/en/skills) documentation. See the [agent and LLM guide](docs/agents.md) for Bash/PowerShell installation commands, prompts, and the JSON integration contract.
 

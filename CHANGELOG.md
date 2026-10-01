@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Prepare 0.1.1: static completion-check guides, reproducible passing-test/PARTIAL demo, target-specific native packages, and maintainer adoption snapshots. Publication follows review and account authentication.
 - Add an installable actually-done agent skill for Claude Code and Codex, with an LLM guide, installation instructions, and a receipt workflow diagram.
 
 ## 0.1.0
