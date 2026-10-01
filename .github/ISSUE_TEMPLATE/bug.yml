@@ -1,0 +1,25 @@
+name: Bug report
+description: Report a reproducible parsing, discovery, or receipt problem.
+body:
+  - type: markdown
+    attributes:
+      value: "Use synthetic or anonymized data. Report security vulnerabilities privately through SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: CLI version and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Command and minimal reproduction
+      description: Include a safe fixture and repository setup when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

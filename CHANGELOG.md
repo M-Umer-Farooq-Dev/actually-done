@@ -4,6 +4,7 @@
 
 - Detect unfinished obligations in long paragraphs before truncating retained excerpts.
 - Isolate CLI acceptance tests from personal configuration and session roots.
+- Add CI, dependency updates, security reporting guidance, and reproducible dependency license notices.
 - Standalone native Rust CLI named `actually-done`.
 - Claude Code and Codex transcript adapters, local session discovery, and Git evidence.
 - Fresh test execution, explicit waivers, timeouts, and interruption cleanup.
