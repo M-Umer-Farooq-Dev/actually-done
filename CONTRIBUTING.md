@@ -14,4 +14,4 @@ Add synthetic or thoroughly anonymized transcript fixtures for parsing changes. 
 
 The license-report script is development-only and needs Python 3.10 or newer. After dependency changes run `python scripts/license_report.py` and review the inventory and notices. CI tests Rust 1.85 on Windows, Linux, and macOS and checks formatting, Clippy, dependency advisories, licenses, and Git-history secrets. Vulnerability reports go through [SECURITY.md](SECURITY.md).
 
-Describe the problem, resulting behavior, and checks in your pull request. Windows x64 is currently validated; contributions that exercise Unix process cleanup and provider discovery are welcome. Report bugs with OS, CLI version, exact command, expected result, and a minimal safe fixture.
+Describe the problem, resulting behavior, and checks in your pull request. CI exercises basic receipts on Windows, Linux, and macOS; contributions that expand Unix process cleanup and provider discovery coverage are welcome. Report bugs with OS, CLI version, exact command, expected result, and a minimal safe fixture. Read [source provenance and licensing](docs/provenance.md) before submitting third-party material.

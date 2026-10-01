@@ -24,7 +24,7 @@ flowchart LR
 
 ## Install from source
 
-You need Git and Rust 1.85 or newer. This release has been exercised on Windows x64; Linux and macOS runtime validation remains open. Dependencies download during the first build. Once installed, the CLI processes transcripts locally.
+You need Git and Rust 1.85 or newer. CI runs the native tests and release builds on Windows, Linux, and macOS with Rust 1.85. Windows x64 also has broader provider compatibility and process-cleanup verification. Dependencies download during the first build. Once installed, the CLI processes transcripts locally.
 
 From this checkout:
 
@@ -34,7 +34,7 @@ actually-done --version
 actually-done --help
 ```
 
-After this repository is published, obtain the checkout with:
+Obtain the checkout with:
 
 ```console
 git clone https://github.com/M-Umer-Farooq-Dev/actually-done.git
@@ -42,7 +42,7 @@ cd actually-done
 cargo install --locked --path .
 ```
 
-No crates.io release or downloadable release binaries are assumed by these instructions.
+Source installation is available now. There is no crates.io publication. The GitHub v0.1.0 release includes a Windows x64 package with license notices and SHA-256 checksums; other platforms currently use source installation.
 
 ## Your first receipt
 
