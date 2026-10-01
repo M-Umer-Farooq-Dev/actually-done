@@ -1,0 +1,35 @@
+[package]
+name = "actually-done"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+description = "Local evidence receipts for Claude Code and Codex sessions"
+readme = "README.md"
+repository = "https://github.com/M-Umer-Farooq-Dev/actually-done"
+keywords = ["cli", "codex", "claude", "verification"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+chrono = "0.4"
+clap = { version = "4", features = ["derive"] }
+ctrlc = "3"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+shell-words = "1"
+same-file = "1"
+tempfile = "3"
+toml = "0.8"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[[bin]]
+name = "actually-done"
+path = "src/main.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
