@@ -1,0 +1,12 @@
+<p class="eyebrow">Start here</p><h1>Install actually-done</h1><p class="lead">The CLI runs locally. The optional skill teaches your agent how to use it.</p>
+<h2>Install the CLI from source</h2><p>You need Git and Rust 1.85 or newer. Dependencies download during the build.</p><pre><code>git clone https://github.com/M-Umer-Farooq-Dev/actually-done.git
+cd actually-done
+cargo install --locked --path .
+actually-done --version</code></pre><p>There is currently no crates.io publication. Do not use <code>cargo install actually-done</code> until a registry release is announced.</p>
+<h2>Native downloads</h2><p>The <a href="https://github.com/M-Umer-Farooq-Dev/actually-done/releases">published releases</a> are the source of available downloads. v0.1.0 has Windows x64. Cross-platform archives for Linux x64, macOS Apple Silicon, and Windows x64 are being prepared; CI artifacts are not a published release. Match the archive to your operating system and CPU, verify its SHA-256 checksum, preserve its license notices, and place the executable on PATH.</p>
+<h2>Run your first receipt</h2><p>Move into the Git repository the agent worked on. Choose an authorized test command appropriate for that project.</p><pre><code>actually-done . --test "cargo test --locked"
+actually-done . --test "pytest -q" --json</code></pre><p>These are alternatives, not commands to run blindly. Commands are argument lists; shell pipes, redirects, and compound commands are not supported inside <code>--test</code>.</p>
+<h2>Waive tests explicitly</h2><pre><code>actually-done . --no-test</code></pre><p>The receipt records the waiver. Without configured tests or a waiver, tests are unverified. A test command can modify files or use the network.</p>
+<h2>Save a receipt</h2><pre><code>actually-done . --test "cargo test --locked" --json
+actually-done . --test "cargo test --locked" --out receipt.md</code></pre><p>The Markdown output’s parent must exist. Never target a transcript. Exit 1 carries an attention-needed receipt; exit 2 reports input/discovery errors on stderr. <a href="verdicts.html">Read the verdict rules</a>.</p>
+<p>For agent installation and prompts, continue to <a href="agent-skill.html">the skill guide</a>.</p>

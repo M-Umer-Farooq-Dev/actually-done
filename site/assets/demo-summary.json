@@ -1,0 +1,13 @@
+{
+  "caption": "Captured stdout from the synthetic demo; JSON receipt field summary, not an animated recording.",
+  "summary": {
+    "provider": "claude",
+    "verdict": "PARTIAL",
+    "exit_code": 1,
+    "tests": "passed",
+    "untracked_claim": "auth.py",
+    "leftovers": [
+      "Done. Updated `auth.py`. We should rotate the key later."
+    ]
+  }
+}

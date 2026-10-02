@@ -1,4 +1,10 @@
 /target/
+/_site/
+/dist/
+/.metrics/
+/docs/plans/
+/docs/launch-drafts.md
+__pycache__/
 *.receipt.json
 receipt.md
 .env

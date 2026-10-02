@@ -20,6 +20,8 @@ jobs:
       - run: cargo +stable fmt -- --check
       - run: cargo +stable clippy --locked --all-targets -- -D warnings
       - run: python3 scripts/license_report.py --check
+      - run: python3 scripts/build_site.py
+      - run: python3 -m unittest discover -s scripts/tests -v
   tests:
     name: Test (${{ matrix.os }}, Rust 1.85)
     strategy:

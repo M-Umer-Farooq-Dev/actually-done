@@ -19,7 +19,7 @@ ALLOWED = {
 }
 
 
-def generate() -> dict[Path, str]:
+def generate(target: str = TARGET) -> dict[Path, str]:
     result = subprocess.run(
         ["cargo", "metadata", "--locked", "--format-version", "1"],
         cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True,
@@ -27,7 +27,7 @@ def generate() -> dict[Path, str]:
     data = json.loads(result.stdout)
     windows_result = subprocess.run(
         ["cargo", "metadata", "--locked", "--format-version", "1",
-         "--filter-platform", TARGET],
+         "--filter-platform", target],
         cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True,
     )
     packages = sorted(
@@ -46,8 +46,8 @@ def generate() -> dict[Path, str]:
     ]
     notices = [
         "# Third-party notices", "",
-        f"Generated for the locked `{TARGET}` dependency graph.",
-        "Include this file and LICENSE with the Windows binary.",
+        f"Generated for the locked `{target}` dependency graph.",
+        "Include this file and LICENSE with the Windows binary." if target == TARGET else "Include this file and LICENSE with the native binary.",
         "These notices retain upstream license and attribution text; other targets need their own notice bundle.",
         "MIT is selected where offered as an alternative. Unicode-3.0 is also retained where required.", "",
     ]
@@ -69,6 +69,11 @@ def generate() -> dict[Path, str]:
             and p.name.upper().startswith(("LICENSE", "LICENCE", "COPYING", "NOTICE"))
         )
         if not candidates:
+            directory = ROOT / "licenses" / f"{name}-{version}"
+            if directory.is_dir():
+                candidates = sorted(p for p in directory.iterdir() if p.is_file() and p.name.upper().startswith("LICENSE"))
+                notices += [f"Upstream licensing policy and workspace MIT notice retained with separate pinned provenance; see licenses/{name}-{version}/PROVENANCE.md.", ""]
+        if not candidates:
             raise SystemExit(f"Missing release notices for {name} {version}")
         notices += [f"## {name} {version}", "", f"Declared: `{license_expression}`. Selected: `{selected}`.", ""]
         for path in candidates:
@@ -85,8 +90,19 @@ def generate() -> dict[Path, str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Fail if checked-in output differs")
+    parser.add_argument("--target", default=TARGET, help="Dependency graph for release notices")
+    parser.add_argument("--notices-out", type=Path, help="Write only target-specific notices to this path")
     options = parser.parse_args()
-    for path, text in generate().items():
+    if options.target != TARGET and not options.notices_out:
+        parser.error("--target requires --notices-out when using another platform")
+    if options.check and options.notices_out:
+        parser.error("--check cannot be combined with --notices-out")
+    generated = generate(options.target)
+    if options.notices_out:
+        options.notices_out.write_text(generated[ROOT / "THIRD_PARTY_NOTICES.md"], encoding="utf-8", newline="\n")
+        print(f"Release notices generated for {options.target}.")
+        return
+    for path, text in generated.items():
         if options.check:
             if not path.exists() or path.read_text(encoding="utf-8") != text:
                 raise SystemExit(f"Regenerate {path.name} with python scripts/license_report.py")
